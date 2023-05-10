@@ -18,10 +18,11 @@ app.get('/api/quotes/random', (req, res, next) => {
 })
 
 app.get('/api/quotes', (req, res, next) => {
-	// const foundPerson = route.query.person
-	// if (foundPerson) {
-	// } else {
-	// 	res.send(quotes)
-	// }
-	res.send({ quotes: quotes })
+	const person = req.query.person
+	if (person) {
+		const quotesByperson = quotes.filter((quote) => quote.person === person)
+		res.send({ quotes: quotesByperson })
+	} else {
+		res.send({ quotes: quotes })
+	}
 })
