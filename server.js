@@ -28,8 +28,13 @@ app.get('/api/quotes', (req, res, next) => {
 })
 
 app.post('/api/quotes', (req, res, next) => {
-	if (req.query.quote && req.query.person) {
-		quotes.push({ quote: req.query.quote, person: req.query.person })
+	const newQuote = {
+		quote: req.query.quote,
+		person: req.query.person,
+	}
+	if (newQuote.quote && newQuote.person) {
+		quotes.push(newQuote)
+		res.send({ quote: newQuote })
 	} else {
 		res.status(400).send()
 	}
