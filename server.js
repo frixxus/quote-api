@@ -26,3 +26,11 @@ app.get('/api/quotes', (req, res, next) => {
 		res.send({ quotes: quotes })
 	}
 })
+
+app.post('/api/quotes', (req, res, next) => {
+	if (req.query.quote && req.query.person) {
+		quotes.push({ quote: req.query.quote, person: req.query.person })
+	} else {
+		res.status(400).send()
+	}
+})
